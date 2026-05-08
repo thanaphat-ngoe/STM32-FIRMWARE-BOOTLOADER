@@ -10,9 +10,7 @@ set(MX_Defines_Syms
 
 # STM32CubeMX generated include paths
 set(MX_Include_Dirs
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Shared/Inc
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32L0xx_HAL_Driver/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Device/ST/STM32L0xx/Include
@@ -21,23 +19,17 @@ set(MX_Include_Dirs
 
 # STM32CubeMX generated application sources
 set(MX_Application_Src
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Shared/Src/crc8.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Shared/Src/ring-buffer.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Shared/Src/timer.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Shared/Src/transport-layer.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Shared/Src/uart.c
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Src/main.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Src/stm32l0xx_it.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Src/stm32l0xx_hal_msp.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Src/sysmem.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Src/syscalls.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/main.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32l0xx_it.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32l0xx_hal_msp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/sysmem.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/syscalls.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../startup_stm32l053xx.s
 )
 
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../${FIRMWARE_SECTION}/Core/Src/system_stm32l0xx.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/system_stm32l0xx.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.c
@@ -58,17 +50,18 @@ set(STM32_Drivers_Src
 
 # Drivers Midllewares
 
+
+
 # Link directories setup
 set(MX_LINK_DIRS
 
 )
-
 # Project static libraries
 set(MX_LINK_LIBS 
     STM32_Drivers
     ${TOOLCHAIN_LINK_LIBRARIES}
+    
 )
-
 # Interface library for includes and symbols
 add_library(stm32cubemx INTERFACE)
 target_include_directories(stm32cubemx INTERFACE ${MX_Include_Dirs})
@@ -78,6 +71,7 @@ target_compile_definitions(stm32cubemx INTERFACE ${MX_Defines_Syms})
 add_library(STM32_Drivers OBJECT)
 target_sources(STM32_Drivers PRIVATE ${STM32_Drivers_Src})
 target_link_libraries(STM32_Drivers PUBLIC stm32cubemx)
+
 
 # Add STM32CubeMX generated application sources to the project
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${MX_Application_Src})

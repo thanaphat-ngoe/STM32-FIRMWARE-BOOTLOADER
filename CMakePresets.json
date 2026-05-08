@@ -5,66 +5,34 @@
             "name": "default",
             "hidden": true,
             "generator": "Ninja",
-            "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
-            "cacheVariables": {}
+            "binaryDir": "${sourceDir}/build/${presetName}",
+		    "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
+            "cacheVariables": {
+            }
         },
         {
-            "name": "Bootloader-Debug",
-            "displayName": "Bootloader (Debug)",
+            "name": "Debug",
             "inherits": "default",
-            "binaryDir": "${sourceDir}/Bootloader/build/Debug",
             "cacheVariables": {
-                "FIRMWARE_SECTION": "Bootloader",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "Bootloader-Release",
-            "displayName": "Bootloader (Release)",
+            "name": "Release",
             "inherits": "default",
-            "binaryDir": "${sourceDir}/Bootloader/build/Release",
             "cacheVariables": {
-                "FIRMWARE_SECTION": "Bootloader",
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        },
-        {
-            "name": "Application-Debug",
-            "displayName": "Application (Debug)",
-            "inherits": "default",
-            "binaryDir": "${sourceDir}/Application/build/Debug",
-            "cacheVariables": {
-                "FIRMWARE_SECTION": "Application",
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "Application-Release",
-            "displayName": "Application (Release)",
-            "inherits": "default",
-            "binaryDir": "${sourceDir}/Application/build/Release",
-            "cacheVariables": {
-                "FIRMWARE_SECTION": "Application",
                 "CMAKE_BUILD_TYPE": "Release"
             }
         }
     ],
     "buildPresets": [
         {
-            "name": "Bootloader-Debug",
-            "configurePreset": "Bootloader-Debug"
+            "name": "Debug",
+            "configurePreset": "Debug"
         },
         {
-            "name": "Bootloader-Release",
-            "configurePreset": "Bootloader-Release"
-        },
-        {
-            "name": "Application-Debug",
-            "configurePreset": "Application-Debug"
-        },
-        {
-            "name": "Application-Release",
-            "configurePreset": "Application-Release"
+            "name": "Release",
+            "configurePreset": "Release"
         }
     ]
 }

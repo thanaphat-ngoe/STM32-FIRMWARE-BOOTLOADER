@@ -127,78 +127,85 @@ HAL_TickFreqTypeDef uwTickFreq = HAL_TICK_FREQ_DEFAULT;  /* 1KHz */
   */
 
 /**
-  * @brief  This function configures the Flash prefetch, Flash preread and Buffer cache,
-  *         Configures time base source, NVIC and Low level hardware
-  * @note   This function is called at the beginning of program after reset and before
-  *         the clock configuration
-  * @note   The time base configuration is based on MSI clock when exiting from Reset.
-  *         Once done, time base tick start incrementing.
-  *         In the default implementation,Systick is used as source of time base.
-  *         the tick variable is incremented each 1ms in its ISR.
+  * @brief This function configures the Flash prefetch, Flash preread and Buffer cache,
+  *        Configures time base source, NVIC and Low level hardware
+  * @note This function is called at the beginning of program after reset and before
+  *       the clock configuration
+  * @note The time base configuration is based on MSI clock when exiting from Reset.
+  *       Once done, time base tick start incrementing.
+  *        In the default implementation,Systick is used as source of time base.
+  *        the tick variable is incremented each 1ms in its ISR.
   * @retval HAL status
-**/
-HAL_StatusTypeDef HAL_Init(void) {
-  	HAL_StatusTypeDef  status = HAL_OK;
+  */
+HAL_StatusTypeDef HAL_Init(void)
+{
+  HAL_StatusTypeDef  status = HAL_OK;
 
-  	/* Configure Buffer cache, Flash prefetch,  Flash preread */
-	#if (BUFFER_CACHE_DISABLE != 0)
-  		__HAL_FLASH_BUFFER_CACHE_DISABLE();
-	#endif /* BUFFER_CACHE_DISABLE */
+  /* Configure Buffer cache, Flash prefetch,  Flash preread */
+#if (BUFFER_CACHE_DISABLE != 0)
+  __HAL_FLASH_BUFFER_CACHE_DISABLE();
+#endif /* BUFFER_CACHE_DISABLE */
 
-	#if (PREREAD_ENABLE != 0)
-  		__HAL_FLASH_PREREAD_BUFFER_ENABLE();
-	#endif /* PREREAD_ENABLE */
+#if (PREREAD_ENABLE != 0)
+  __HAL_FLASH_PREREAD_BUFFER_ENABLE();
+#endif /* PREREAD_ENABLE */
 
-	#if (PREFETCH_ENABLE != 0)
-  		__HAL_FLASH_PREFETCH_BUFFER_ENABLE();
-	#endif /* PREFETCH_ENABLE */
+#if (PREFETCH_ENABLE != 0)
+  __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+#endif /* PREFETCH_ENABLE */
 
-  	/* Use SysTick as time base source and configure 1ms tick (default clock after Reset is MSI) */
-  	if (HAL_InitTick(TICK_INT_PRIORITY) != HAL_OK) {
-    	status = HAL_ERROR;
-  	} else {
-    	/* Init the low level hardware */
-    	HAL_MspInit();
-  	}
+  /* Use SysTick as time base source and configure 1ms tick (default clock after Reset is MSI) */
+  if (HAL_InitTick(TICK_INT_PRIORITY) != HAL_OK)
+  {
+    status = HAL_ERROR;
+  }
+  else
+  {
+    /* Init the low level hardware */
+    HAL_MspInit();
+  }
 
-  	/* Return function status */
-  	return status;
+  /* Return function status */
+  return status;
 }
 
 /**
-  * @brief  This function de-initializes common part of the HAL and stops the source of time base.
-  * @note   This function is optional.
+  * @brief This function de-initializes common part of the HAL and stops the source
+  *        of time base.
+  * @note This function is optional.
   * @retval HAL status
-**/
-HAL_StatusTypeDef HAL_DeInit(void) {
-  	/* Reset of all peripherals */
-  	__HAL_RCC_APB1_FORCE_RESET();
-  	__HAL_RCC_APB1_RELEASE_RESET();
+  */
+HAL_StatusTypeDef HAL_DeInit(void)
+{
+  /* Reset of all peripherals */
+  __HAL_RCC_APB1_FORCE_RESET();
+  __HAL_RCC_APB1_RELEASE_RESET();
 
-  	__HAL_RCC_APB2_FORCE_RESET();
-  	__HAL_RCC_APB2_RELEASE_RESET();
+  __HAL_RCC_APB2_FORCE_RESET();
+  __HAL_RCC_APB2_RELEASE_RESET();
 
-  	__HAL_RCC_AHB_FORCE_RESET();
-  	__HAL_RCC_AHB_RELEASE_RESET();
+  __HAL_RCC_AHB_FORCE_RESET();
+  __HAL_RCC_AHB_RELEASE_RESET();
 
-  	__HAL_RCC_IOP_FORCE_RESET();
-  	__HAL_RCC_IOP_RELEASE_RESET();
+  __HAL_RCC_IOP_FORCE_RESET();
+  __HAL_RCC_IOP_RELEASE_RESET();
 
-  	/* De-Init the low level hardware */
-  	HAL_MspDeInit();
+  /* De-Init the low level hardware */
+  HAL_MspDeInit();
 
-  	/* Return function status */
-  	return HAL_OK;
+  /* Return function status */
+  return HAL_OK;
 }
 
 /**
   * @brief  Initializes the MSP.
   * @retval None
   */
-__weak void HAL_MspInit(void) {
-  	/* NOTE : This function should not be modified, when the callback is needed,
-    the HAL_MspInit could be implemented in the user file
-   	*/
+__weak void HAL_MspInit(void)
+{
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_MspInit could be implemented in the user file
+   */
 }
 
 /**
@@ -228,22 +235,27 @@ __weak void HAL_MspDeInit(void)
   * @param TickPriority Tick interrupt priority.
   * @retval HAL status
   */
-__weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority) {
-  	/* Configure the SysTick to have interrupt in 1ms time basis*/
-  	if (HAL_SYSTICK_Config(SystemCoreClock / (1000U / uwTickFreq)) > 0U) {
-    	return HAL_ERROR;
- 	}
+__weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
+{
+  /* Configure the SysTick to have interrupt in 1ms time basis*/
+  if (HAL_SYSTICK_Config(SystemCoreClock / (1000U / uwTickFreq)) > 0U)
+  {
+    return HAL_ERROR;
+  }
 
-  	/* Configure the SysTick IRQ priority */
-  	if (TickPriority < (1UL << __NVIC_PRIO_BITS)) {
-    	HAL_NVIC_SetPriority(SysTick_IRQn, TickPriority, 0U);
-    	uwTickPrio = TickPriority;
-  	} else {
-    	return HAL_ERROR;
-  	}
+  /* Configure the SysTick IRQ priority */
+  if (TickPriority < (1UL << __NVIC_PRIO_BITS))
+  {
+    HAL_NVIC_SetPriority(SysTick_IRQn, TickPriority, 0U);
+    uwTickPrio = TickPriority;
+  }
+  else
+  {
+    return HAL_ERROR;
+  }
 
-  	/* Return function status */
-  	return HAL_OK;
+  /* Return function status */
+  return HAL_OK;
 }
 
 /**
@@ -275,12 +287,13 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority) {
   *        used as application time base.
   * @note In the default implementation, this variable is incremented each 1ms
   *       in SysTick ISR.
-  * @note This function is declared as __weak to be overwritten in case of other
+ * @note This function is declared as __weak to be overwritten in case of other
   *      implementations in user file.
   * @retval None
-**/
-__weak void HAL_IncTick(void) {
-	uwTick += uwTickFreq;
+  */
+__weak void HAL_IncTick(void)
+{
+  uwTick += uwTickFreq;
 }
 
 /**
@@ -288,9 +301,10 @@ __weak void HAL_IncTick(void) {
   * @note This function is declared as __weak to be overwritten in case of other
   *       implementations in user file.
   * @retval tick value
-**/
-__weak uint32_t HAL_GetTick(void) {
-	return uwTick;
+  */
+__weak uint32_t HAL_GetTick(void)
+{
+  return uwTick;
 }
 
 /**
@@ -355,18 +369,20 @@ HAL_TickFreqTypeDef HAL_GetTickFreq(void)
   * @param Delay specifies the delay time length, in milliseconds.
   * @retval None
   */
-__weak void HAL_Delay(uint32_t Delay) {
-	uint32_t tickstart = HAL_GetTick();
-  	uint32_t wait = Delay;
+__weak void HAL_Delay(uint32_t Delay)
+{
+  uint32_t tickstart = HAL_GetTick();
+  uint32_t wait = Delay;
 
-  	/* Add a freq to guarantee minimum wait */
-  	if (wait < HAL_MAX_DELAY) {
-    	wait += (uint32_t)(uwTickFreq);
-  	}
+  /* Add a freq to guarantee minimum wait */
+  if (wait < HAL_MAX_DELAY)
+  {
+    wait += (uint32_t)(uwTickFreq);
+  }
 
-  	while((HAL_GetTick() - tickstart) < wait)
-  	{
-  	}
+  while((HAL_GetTick() - tickstart) < wait)
+  {
+  }
 }
 
 /**
@@ -654,3 +670,6 @@ void HAL_SYSCFG_Disable_Lock_VREFINT(void)
 /**
   * @}
   */
+
+
+
