@@ -1,0 +1,4 @@
+/Users/hotlatte/Desktop/Electronics/STM32-BOOTLOADER-WITH-CRYPTO/Core/Src/ring-buffer.c:3:6:RB_Init	0	static
+/Users/hotlatte/Desktop/Electronics/STM32-BOOTLOADER-WITH-CRYPTO/Core/Src/ring-buffer.c:10:6:RB_Is_Empty	0	static
+/Users/hotlatte/Desktop/Electronics/STM32-BOOTLOADER-WITH-CRYPTO/Core/Src/ring-buffer.c:14:6:RB_Read	8	static
+/Users/hotlatte/Desktop/Electronics/STM32-BOOTLOADER-WITH-CRYPTO/Core/Src/ring-buffer.c:29:6:RB_Write	12	static

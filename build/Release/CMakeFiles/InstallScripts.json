@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/hotlatte/Desktop/Electronics/STM32-BOOTLOADER-WITH-CRYPTO/build/Release/cmake_install.cmake",
+		"/Users/hotlatte/Desktop/Electronics/STM32-BOOTLOADER-WITH-CRYPTO/build/Release/cmake/stm32cubemx/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

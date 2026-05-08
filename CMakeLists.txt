@@ -66,3 +66,22 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
     # Add user defined libraries
 )
+
+# 1. Convert Application .elf to .bin
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${CMAKE_PROJECT_NAME}> ${CMAKE_PROJECT_NAME}.bin
+    BYPRODUCTS ${CMAKE_PROJECT_NAME}.bin
+    COMMENT "Generating Application BIN file..."
+)
+
+# 2. Find Python
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
+
+# 3. Run the Unified Builder Script
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND Python3::Interpreter ${CMAKE_SOURCE_DIR}/FW-Image-Padder.py 
+            ${CMAKE_SOURCE_DIR}/build/Release/STM32-BOOTLOADER-WITH-CRYPTO.bin  # Raw Bootloader
+            ${CMAKE_SOURCE_DIR}/STM32-FW-IMAGE.bin                              # Raw App
+            ${CMAKE_SOURCE_DIR}/FULL_FIRMWARE.bin                               # Output
+    COMMENT "Padding Bootloader and Appending Application into FULL_FIRMWARE.bin..."
+)

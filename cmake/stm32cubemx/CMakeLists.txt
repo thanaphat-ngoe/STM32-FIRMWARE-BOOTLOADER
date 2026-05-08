@@ -20,6 +20,9 @@ set(MX_Include_Dirs
 # STM32CubeMX generated application sources
 set(MX_Application_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/main.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/transport-layer.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/ring-buffer.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/crc8.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32l0xx_it.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32l0xx_hal_msp.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/sysmem.c
