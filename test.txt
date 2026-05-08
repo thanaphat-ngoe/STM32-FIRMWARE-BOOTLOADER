@@ -1,3 +1,0 @@
-    // 3. Reset the Clock Controller (RCC) to its default startup state
-    // This turns off the PLL and switches the system back to the default internal oscillator (HSI/MSI)
-    // HAL_RCC_DeInit();
