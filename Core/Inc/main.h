@@ -28,10 +28,11 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l0xx_hal.h"
-#include "stdbool.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdbool.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -83,6 +84,17 @@ typedef struct VectorTable_TypeDef {
     pFunction LCD_IRQHandler;                 /* LCD */
     pFunction USB_IRQHandler;                 /* USB */
 } VectorTable_TypeDef;
+
+typedef struct FirmwareHeader_TypeDef {
+	uint32_t MagicNumber;
+	uint32_t DeviceID;
+	uint32_t Version;
+	uint32_t Size;
+	uint8_t  Signature_R[32];
+	uint8_t  Signature_S[32];
+	uint32_t Reserved[43];
+	uint32_t CRC32;
+} FirmwareHeader_TypeDef;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -117,7 +129,42 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
+#define AL_MESSAGE_SEQUENCE_OBSERVED                 (0x01)
+#define AL_MESSAGE_FIRMWARE_UPDATE_REQUEST           (0x02)
+#define AL_MESSAGE_SENT_CURRENT_FIRMWARE_VERSION     (0x03)
+#define AL_MESSAGE_SENT_NEW_FIRMWARE_HEADER_DATA     (0x04)
+#define AL_MESSAGE_RECEIVED_NEW_FIRMWARE_HEADER_DATA (0x05)
+#define AL_MESSAGE_FIRMWARE_HEADER_WRITTEN           (0x06)
+#define AL_MESSAGE_RECEIVED_NEW_FIRMWARE_DATA        (0x07)
+#define AL_MESSAGE_UPDATE_SUCCESSFUL                 (0x08)
+#define AL_MESSAGE_NACK                              (0x09)
 
+#define WOLFCRYPT_ONLY
+#define SINGLE_THREADED
+#define NO_FILESYSTEM
+#define HAVE_ECC
+#define HAVE_SHA256
+#define USE_FAST_MATH        // Highly recommended for STM32 to speed up ECC
+#define FP_MAX_BITS 512      // Required for SECP256R1 fast math
+#define TFM_TIMING_RESISTANT
+
+#define DEVICE_ID                           (0x01)
+
+#define SYNC_SEQ_0                          (0x01)
+#define SYNC_SEQ_1                          (0x02)
+#define SYNC_SEQ_2                          (0x03)
+#define SYNC_SEQ_3                          (0x04)
+
+#define DEFAULT_TIMEOUT                     (1000)
+
+#define USER_FLASH_SIZE                     (0x10000U) 
+#define BOOTLOADER_SIZE                     (0x4000U)                                                              // 16 KByte (16384 Byte) (0x4000)
+#define MAX_FIRMWARE_IMAGE_SIZE             ((USER_FLASH_SIZE - BOOTLOADER_SIZE) / 2)                              // 48 / 2 Kbyte (24576 Byte) (0x6000)
+ 
+#define FIRMWARE_IMAGE_START_ADDRESS_BANK_1 (FLASH_BASE + BOOTLOADER_SIZE)                                         // 0x08000000 + 0x4000 (0x08004000)
+#define FIRMWARE_ENTRY_POINT_ADDRESS_BANK_1 (FIRMWARE_IMAGE_START_ADDRESS_BANK_1 + sizeof(FirmwareHeader_TypeDef)) // 0x08004000 + 0x0100 (0x08004100)
+#define FIRMWARE_IMAGE_START_ADDRESS_BANK_2 (FIRMWARE_IMAGE_START_ADDRESS_BANK_1 + MAX_FIRMWARE_IMAGE_SIZE)        // 0x08004000 + 0x6000 (0x0800A000)
+#define FIRMWARE_ENTRY_POINT_ADDRESS_BANK_2 (FIRMWARE_IMAGE_START_ADDRESS_BANK_2 + sizeof(FirmwareHeader_TypeDef)) // 0x0800A000 + 0x0100 (0x0800A100)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

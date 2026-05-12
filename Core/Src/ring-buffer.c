@@ -26,18 +26,24 @@ bool RB_Read(RB_TypeDef* ring_buffer, uint8_t* byte) {
     return true;
 }
 
-bool RB_Write(RB_TypeDef* ring_buffer, uint8_t byte) {
-    uint32_t local_write_index = ring_buffer->write_index;
-    uint32_t local_read_index = ring_buffer->read_index;
+// bool RB_Write(RB_TypeDef* ring_buffer, uint8_t byte) {
+//     uint32_t local_write_index = ring_buffer->write_index;
+//     uint32_t local_read_index = ring_buffer->read_index;
 
-    uint32_t next_wirte_index = (local_write_index + 1) & ring_buffer->mask; 
+//     uint32_t next_wirte_index = (local_write_index + 1) & ring_buffer->mask; 
 
-    if (next_wirte_index == local_read_index) {
-        return false;
-    }
+//     if (next_wirte_index == local_read_index) {
+//         return false;
+//     }
 
-    ring_buffer->buffer[local_write_index] = byte;
-    ring_buffer->write_index = next_wirte_index;
+//     ring_buffer->buffer[local_write_index] = byte;
+//     ring_buffer->write_index = next_wirte_index;
 
-    return true;
+//     return true;
+// }
+
+void RB_Sync_Write_Index(RB_TypeDef* ring_buffer, uint32_t dma_ndtr) {
+    uint32_t size = ring_buffer->mask + 1; 
+    ring_buffer->write_index = size - dma_ndtr;
+    ring_buffer->write_index &= ring_buffer->mask; 
 }

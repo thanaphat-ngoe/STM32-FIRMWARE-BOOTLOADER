@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 #
-# This file is generated only once,
-# and is not re-generated if converter is called multiple times.
-#
+# This file is generated only once, and is not re-generated if converter is called multiple times.
 # User is free to modify the file as much as necessary
 #
 
@@ -11,7 +9,6 @@ cmake_minimum_required(VERSION 3.22)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
-
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -63,25 +60,24 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-
     # Add user defined libraries
 )
 
-# 1. Convert Application .elf to .bin
+# Convert Bootloader .elf to .bin
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${CMAKE_PROJECT_NAME}> ${CMAKE_PROJECT_NAME}.bin
     BYPRODUCTS ${CMAKE_PROJECT_NAME}.bin
-    COMMENT "Generating Application BIN file..."
+    COMMENT "Generating Bootloader BIN file..."
 )
 
-# 2. Find Python
+# Find Python
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-# 3. Run the Unified Builder Script
+# Run the Unified Builder Script
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND Python3::Interpreter ${CMAKE_SOURCE_DIR}/FW-Image-Padder.py 
-            ${CMAKE_SOURCE_DIR}/build/Release/STM32-BOOTLOADER-WITH-CRYPTO.bin  # Raw Bootloader
-            ${CMAKE_SOURCE_DIR}/STM32-FW-IMAGE.bin                              # Raw App
-            ${CMAKE_SOURCE_DIR}/FULL_FIRMWARE.bin                               # Output
-    COMMENT "Padding Bootloader and Appending Application into FULL_FIRMWARE.bin..."
+    COMMAND Python3::Interpreter ${CMAKE_SOURCE_DIR}/BOOTLOADER-PADDER-TOOL.py
+		${CMAKE_SOURCE_DIR}/build/Release/STM32-BOOTLOADER-WITH-CRYPTO.bin  # <--- Arg 1: Raw Bootloader
+		${CMAKE_SOURCE_DIR}/STM32-FW-IMAGE-SIGNED.bin                       # <--- Arg 2: Signed Firmware
+		${CMAKE_SOURCE_DIR}/FULL_FIRMWARE.bin                               # <--- Arg 3: Full Image (Bootloader + Firmware)
+    COMMENT "Padding Bootloader and Assembling Firmware..."
 )
