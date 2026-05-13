@@ -24,6 +24,7 @@
 #include "transport-layer.h"
 #include "crc8.h"
 #include "ring-buffer.h"
+#include "crypto.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -84,7 +85,7 @@ static uint8_t data_buffer[128] = {0U};
 static FLASH_EraseInitTypeDef pEraseInit = {
 	.TypeErase   = FLASH_TYPEERASE_PAGES,
 	.PageAddress = FIRMWARE_IMAGE_START_ADDRESS_BANK_2,
-	.NbPages	 = 192
+	.NbPages	 = 176
 };
 
 static uint32_t PageError = 0;
@@ -282,9 +283,9 @@ int main(void)
                     }
                     
                     if (bytes_written == firmware_header_bank_1_tmp.Size) {
-						TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_UPDATE_SUCCESSFUL);
-                		TL_Write(&temp_packet);
-                        al_state = AL_State_Done;
+                        // TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_UPDATE_SUCCESSFUL);
+                		// TL_Write(&temp_packet);
+                   	 	al_state = AL_State_VerifyFirmwareSignature;
                     } else {
                         TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_RECEIVED_NEW_FIRMWARE_DATA);
                         TL_Write(&temp_packet);
@@ -293,6 +294,18 @@ int main(void)
                     continue;
                 }
             } break;
+
+			case AL_State_VerifyFirmwareSignature: {
+				if (Verify_Firmware_Signature(FIRMWARE_IMAGE_START_ADDRESS_BANK_2)) {
+					TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_UPDATE_SUCCESSFUL);
+                	TL_Write(&temp_packet);
+                    al_state = AL_State_Done;
+				} else {
+					TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_NACK);
+                	TL_Write(&temp_packet);
+                    al_state = AL_State_Done;
+				}
+			} break;
 
             default: {
                 al_state = AL_State_Sync;

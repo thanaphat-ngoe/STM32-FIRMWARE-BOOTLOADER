@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>X-Cube-CRYPTOLIB Projects</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+  </style>
+  <link rel="stylesheet" href="_htmresc/mini-st_2020.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/x-icon" href="../_htmresc/favicon.png" />
+</head>
+<body>
+<div class="row">
+<section id="x-cube-cryptolib-projects" class="col-sm-12">
+<h1><mark>X-Cube-CRYPTOLIB</mark> Projects</h1>
+<p>The application samples are located under <code>STM32CubeExpansion_CRYPTOLIB_VX.Y.Z/Projects/Target</code>, and all of them have the same structure:</p>
+<ul>
+<li><code>/[CMx]/Inc</code> header files of the application.</li>
+<li><code>/[CMx]/Src</code> source code of the application.</li>
+<li><code>/EWARM</code>, <code>/MDK-ARM</code>, and <code>/STM32CubeIDE</code> pre-configured projects for each toolchain.</li>
+<li><code>readme.txt</code> describing the application behavior and the environment required to run the example.</li>
+</ul>
+<p>Note: refer to section “Development Toolchains and Compilers” and “Supported Devices and boards” of the Firmware package <a href="../Release_Notes.html">release notes <span class="icon-link"></span></a> to know about the SW/HW environment used for the Firmware development and validation.</p>
+<hr />
+<p>The table below contains the list of the provided applications.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Project Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">NUCLEO-G071RB</th>
+<th style="text-align: left;">NUCLEO-G474RE</th>
+<th style="text-align: left;">NUCLEO-H563ZI</th>
+<th style="text-align: left;">NUCLEO-H7S3L8</th>
+<th style="text-align: left;">NUCLEO-H753ZI</th>
+<th style="text-align: left;">NUCLEO-L073RZ</th>
+<th style="text-align: left;">NUCLEO-L152RE</th>
+<th style="text-align: left;">NUCLEO-L476RG</th>
+<th style="text-align: left;">NUCLEO-L552ZE-Q</th>
+<th style="text-align: left;">NUCLEO-N657X0-Q</th>
+<th style="text-align: left;">NUCLEO-U083RC</th>
+<th style="text-align: left;">NUCLEO-U385RG-Q</th>
+<th style="text-align: left;">NUCLEO-U575ZI-Q</th>
+<th style="text-align: left;">NUCLEO-WL33CC</th>
+<th style="text-align: left;">NUCLEO-WL55JC</th>
+<th style="text-align: left;">P-NUCLEO-WB55.Nucleo</th>
+<th style="text-align: left;">NUCLEO-WBA52CGB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cipher</td>
+<td style="text-align: left;">AES CBC EncryptDecrypt</td>
+<td style="text-align: left;">Encryption and decryption using the AES CBC algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cipher</td>
+<td style="text-align: left;">AES GCM AEAD EncryptDecrypt</td>
+<td style="text-align: left;">Authenticated encryption and decryption using the AES GCM algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cipher</td>
+<td style="text-align: left;">ChaCha20-Poly1305 AEAD EncryptDecrypt</td>
+<td style="text-align: left;">Authenticated encryption and decryption using the Chacha20-Poly1305 algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cipher</td>
+<td style="text-align: left;">SM4 CTR EncryptDecrypt</td>
+<td style="text-align: left;">Encryption and decryption using the SM4 CTR algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DRBG</td>
+<td style="text-align: left;">Random Generation</td>
+<td style="text-align: left;">Generation of random numbers using the DRBG module</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ECC</td>
+<td style="text-align: left;">ECDH SharedSecretGeneration</td>
+<td style="text-align: left;">Establishment of a shared secret using the ECDH algorithm over SECP256R1 curve</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ECC</td>
+<td style="text-align: left;">ECDSA SignVerify</td>
+<td style="text-align: left;">Signature and verification of a message using the ECDSA algorithm over SECP256R1 curve</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ECC</td>
+<td style="text-align: left;">EDDSA SignVerify</td>
+<td style="text-align: left;">Signature and verification of a message using the EdDSA algorithm over Ed25519 curve</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ECC</td>
+<td style="text-align: left;">SM2 SignVerify</td>
+<td style="text-align: left;">Signature and verification of a message using the SM2 algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hash</td>
+<td style="text-align: left;">SHA2 Digest</td>
+<td style="text-align: left;">Hash a message using the SHA256 algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hash</td>
+<td style="text-align: left;">SHA3 Digest</td>
+<td style="text-align: left;">Hash a message using the SHA3-512 algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hash</td>
+<td style="text-align: left;">SHAKE Digest</td>
+<td style="text-align: left;">Hash a message using the SHAKE algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hash</td>
+<td style="text-align: left;">SM3 Digest</td>
+<td style="text-align: left;">Hash a message using the SM3 algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAC</td>
+<td style="text-align: left;">AES CMAC_AuthenticateVerify</td>
+<td style="text-align: left;">Generation and verification of a message authentication code of plaintext using the AES CMAC algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAC</td>
+<td style="text-align: left;">HMAC SHA2_AuthenticateVerify</td>
+<td style="text-align: left;">Generation and verification of a message authentication code of plaintext using the HMAC-SHA256 algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAC</td>
+<td style="text-align: left;">KMAC AuthenticateVerify</td>
+<td style="text-align: left;">Generation and verification of a message authentication code of plaintext using the KMAC algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RSA</td>
+<td style="text-align: left;">PKCS1v1.5 SignVerify</td>
+<td style="text-align: left;">Signature and verification of a message using the RSA PKCS#1 v1.5 compliant algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RSA</td>
+<td style="text-align: left;">PKCS1v2.2 EncryptDecrypt</td>
+<td style="text-align: left;">Encryption and decryption of a message using the RSA PKCS#1 v2.2 compliant algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RSA</td>
+<td style="text-align: left;">PKCS1v2.2 SignVerify</td>
+<td style="text-align: left;">Signature and verification of a message using the RSA PKCS#1 v2.2 compliant algorithm</td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-add"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+<td style="text-align: left;">Yes<span class="icon-st-update"></span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+<footer class="sticky">
+For complete documentation on <mark>STM32</mark> microcontrollers please visit <a href="http://www.st.com/stm32" class="uri">http://www.st.com/stm32</a>
+</footer>
+</body>
+</html>

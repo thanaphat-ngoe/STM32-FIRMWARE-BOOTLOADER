@@ -1,7 +1,7 @@
 import sys
 
 # --- Configuration ---
-BOOTLOADER_TARGET_SIZE = 0x4000 # 16 KB
+BOOTLOADER_TARGET_SIZE = 0x5000 # 20 KB
 PAD_BYTE               = 0xFF   # Pad bootloader with 0xFF for each byte
 
 def combine_and_pad(bootloader_path, app_path, output_path):

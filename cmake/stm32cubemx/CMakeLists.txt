@@ -15,6 +15,8 @@ set(MX_Include_Dirs
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Device/ST/STM32L0xx/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Include
+	${CMAKE_CURRENT_SOURCE_DIR}/../../micro-ecc-1.1
+	${CMAKE_CURRENT_SOURCE_DIR}/../../STM32CubeExpansion_Crypto_V4.6.0/Middlewares/ST/STM32_Cryptographic/include
 )
 
 # STM32CubeMX generated application sources
@@ -28,6 +30,9 @@ set(MX_Application_Src
 	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/transport-layer.c
 	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/ring-buffer.c
 	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/crc8.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/crypto.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/cmox-low-level.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../../micro-ecc-1.1/uECC.c
 )
 
 # STM32 HAL/LL Drivers
@@ -54,6 +59,7 @@ set(STM32_Drivers_Src
 )
 
 # Drivers Midllewares
+set(X_CUBE_CRYPTO_LIB ${CMAKE_CURRENT_SOURCE_DIR}/../../STM32CubeExpansion_Crypto_V4.6.0/Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a)
 
 # Link directories setup
 set(MX_LINK_DIRS)
@@ -62,6 +68,7 @@ set(MX_LINK_DIRS)
 set(MX_LINK_LIBS 
     STM32_Drivers
     ${TOOLCHAIN_LINK_LIBRARIES}
+	${X_CUBE_CRYPTO_LIB}
 )
 
 # Interface library for includes and symbols

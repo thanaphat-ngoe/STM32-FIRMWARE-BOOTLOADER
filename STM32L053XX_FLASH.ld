@@ -56,8 +56,8 @@ ENTRY(Reset_Handler)
 MEMORY
 {
 	RAM (xrw)  : ORIGIN = 0x20000000, LENGTH = 8K
-	FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 64K
-	/* FLASH SHOULD BE 16K PARTITIONED FOR BOOTLOADER SECTION BUT 64K FOR DEBUGGING MODE */
+	FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 20K
+	/* FLASH SHOULD BE 20K PARTITIONED FOR BOOTLOADER SECTION BUT 64K FOR DEBUGGING MODE */
 }
 
 /* Highest address of the user mode stack */
@@ -163,7 +163,7 @@ SECTIONS
 		*(.RamFunc*) /* .RamFunc* sections */
 
 		. = ALIGN(4);
-	} >RAM AT >FLASH
+	} >RAM AT>FLASH
 
 	/* Initialized TLS data section */
 	.tdata : ALIGN(4)
@@ -173,7 +173,7 @@ SECTIONS
 		_edata = .; /* define a global symbol at data end */
 		PROVIDE(__data_end = .);
 		PROVIDE(__tdata_end = .);
-	} >RAM AT> FLASH
+	} >RAM AT>FLASH
 
 	PROVIDE(__tdata_start = ADDR(.tdata));
 	PROVIDE(__tdata_size = __tdata_end - __tdata_start);
