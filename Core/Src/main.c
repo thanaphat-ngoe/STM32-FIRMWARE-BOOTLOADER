@@ -25,6 +25,7 @@
 #include "crc8.h"
 #include "ring-buffer.h"
 #include "crypto.h"
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -283,8 +284,7 @@ int main(void)
                     }
                     
                     if (bytes_written == firmware_header_bank_1_tmp.Size) {
-                        // TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_UPDATE_SUCCESSFUL);
-                		// TL_Write(&temp_packet);
+						bytes_written = 0;
                    	 	al_state = AL_State_VerifyFirmwareSignature;
                     } else {
                         TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_RECEIVED_NEW_FIRMWARE_DATA);
@@ -297,10 +297,25 @@ int main(void)
 
 			case AL_State_VerifyFirmwareSignature: {
 				if (Verify_Firmware_Signature(FIRMWARE_IMAGE_START_ADDRESS_BANK_2)) {
+					HAL_FLASH_Unlock();
+					pEraseInit.PageAddress = FIRMWARE_IMAGE_START_ADDRESS_BANK_1;
+                	HAL_FLASHEx_Erase(&pEraseInit, &PageError);
+					for (uint32_t i = 0; i < MAX_FIRMWARE_IMAGE_SIZE / 4; i++) {
+						uint32_t firmware_data = *(((uint32_t*)FIRMWARE_IMAGE_START_ADDRESS_BANK_2) + i);
+						HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, FIRMWARE_IMAGE_START_ADDRESS_BANK_1 + bytes_written, firmware_data);
+						bytes_written += 4;
+					}
+					pEraseInit.PageAddress = FIRMWARE_IMAGE_START_ADDRESS_BANK_2;
+					HAL_FLASHEx_Erase(&pEraseInit, &PageError);
+					HAL_FLASH_Lock();
 					TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_UPDATE_SUCCESSFUL);
                 	TL_Write(&temp_packet);
                     al_state = AL_State_Done;
 				} else {
+					pEraseInit.PageAddress = FIRMWARE_IMAGE_START_ADDRESS_BANK_2;
+					HAL_FLASH_Unlock();
+                	HAL_FLASHEx_Erase(&pEraseInit, &PageError);
+					HAL_FLASH_Lock();
 					TL_PACKET_Create_Message(&temp_packet, AL_MESSAGE_NACK);
                 	TL_Write(&temp_packet);
                     al_state = AL_State_Done;
